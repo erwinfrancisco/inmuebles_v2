@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFiscaliasTable extends Migration
+class Fiscalias extends Migration
 {
     /**
      * Run the migrations.
@@ -16,6 +16,7 @@ class CreateFiscaliasTable extends Migration
         Schema::create('fiscalias', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('nombre');
         });
     }
 
