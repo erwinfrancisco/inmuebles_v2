@@ -5,44 +5,65 @@
 	use DB;
 	use CRUDBooster;
 
-	class AdminFiscaliasController extends \crocodicstudio\crudbooster\controllers\CBController {
+	class AdminInmueblesController extends \crocodicstudio\crudbooster\controllers\CBController {
 
 	    public function cbInit() {
-
-			# START CONFIGURATION DO NOT REMOVE THIS LINE
-			$this->title_field = "id";
-			$this->limit = "20";
-			$this->orderby = "id,desc";
-			$this->global_privilege = false;
-			$this->button_table_action = true;
-			$this->button_bulk_action = true;
-			$this->button_action_style = "button_icon";
-			$this->button_add = true;
-			$this->button_edit = true;
-			$this->button_delete = true;
-			$this->button_detail = true;
-			$this->button_show = true;
-			$this->button_filter = true;
-			$this->button_import = false;
-			$this->button_export = true;
-			$this->table = "fiscalias";
-			# END CONFIGURATION DO NOT REMOVE THIS LINE
+	    	# START CONFIGURATION DO NOT REMOVE THIS LINE
+			$this->table 			   = "buildings";	        
+			$this->title_field         = "id";
+			$this->limit               = 20;
+			$this->orderby             = "id,desc";
+			$this->show_numbering      = FALSE;
+			$this->global_privilege    = FALSE;	        
+			$this->button_table_action = TRUE;   
+			$this->button_action_style = "button_icon";     
+			$this->button_add          = TRUE;
+			$this->button_delete       = TRUE;
+			$this->button_edit         = TRUE;
+			$this->button_detail       = TRUE;
+			$this->button_show         = TRUE;
+			$this->button_filter       = TRUE;        
+			$this->button_export       = FALSE;	        
+			$this->button_import       = FALSE;
+			$this->button_bulk_action  = TRUE;	
+			$this->sidebar_mode		   = "normal"; //normal,mini,collapse,collapse-mini
+			# END CONFIGURATION DO NOT REMOVE THIS LINE						      
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
-			$this->col = [];
-			$this->col[] = ["label"=>"Id","name"=>"id"];
-			$this->col[] = ["label"=>"Nombre","name"=>"nombre"];
+	        $this->col = [];
+			$this->col[] = array("label"=>"Tipo Inmueble","name"=>"tipo_inmueble" );
+		$this->col[] = array("label"=>"Nombre","name"=>"nombre" );
+		$this->col[] = array("label"=>"Alias","name"=>"alias" );
+		$this->col[] = array("label"=>"Num Finca","name"=>"num_finca" );
+		$this->col[] = array("label"=>"Sup Terreno","name"=>"sup_terreno" );
+
 			# END COLUMNS DO NOT REMOVE THIS LINE
-
 			# START FORM DO NOT REMOVE THIS LINE
-			$this->form = [];
-			$this->form[] = ['label'=>'Nombre','name'=>'nombre','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			# END FORM DO NOT REMOVE THIS LINE
+		$this->form = [];
+		$this->form[] = ["label"=>"Tipo Inmueble","name"=>"tipo_inmueble","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+		$this->form[] = ["label"=>"Nombre","name"=>"nombre","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+		$this->form[] = ["label"=>"Alias","name"=>"alias","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+		$this->form[] = ["label"=>"Num Finca","name"=>"num_finca","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+		$this->form[] = ["label"=>"Sup Terreno","name"=>"sup_terreno","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+		$this->form[] = ["label"=>"Sup Construccion","name"=>"sup_construccion","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+		$this->form[] = ["label"=>"Uso","name"=>"uso","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+		$this->form[] = ["label"=>"Destino Areas","name"=>"destino_areas","type"=>"textarea","required"=>TRUE,"validation"=>"required|string|min:5|max:5000"];
+		$this->form[] = ["label"=>"Estatus","name"=>"estatus","type"=>"textarea","required"=>TRUE,"validation"=>"required|string|min:5|max:5000"];
+		$this->form[] = ["label"=>"Domicilio","name"=>"domicilio","type"=>"textarea","required"=>TRUE,"validation"=>"required|string|min:5|max:5000"];
+		$this->form[] = ["label"=>"Col","name"=>"col","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+		$this->form[] = ["label"=>"Cp","name"=>"cp","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+		$this->form[] = ["label"=>"Municipio","name"=>"municipio","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+		$this->form[] = ["label"=>"Fiscalia Distrito","name"=>"fiscalia_distrito","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+		$this->form[] = ["label"=>"Coord Latitud","name"=>"coord_latitud","type"=>"money","required"=>TRUE,"validation"=>"required|integer|min:0"];
+		$this->form[] = ["label"=>"Coord Longitud","name"=>"coord_longitud","type"=>"money","required"=>TRUE,"validation"=>"required|integer|min:0"];
+		$this->form[] = ["label"=>"Referencias","name"=>"referencias","type"=>"textarea","required"=>TRUE,"validation"=>"required|string|min:5|max:5000"];
+		$this->form[] = ["label"=>"Telefono","name"=>"telefono","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+		$this->form[] = ["label"=>"Ext","name"=>"ext","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+		$this->form[] = ["label"=>"Celular","name"=>"celular","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+		$this->form[] = ["label"=>"Email","name"=>"email","type"=>"email","required"=>TRUE,"validation"=>"required|min:1|max:255|email|unique:buildings","placeholder"=>"Introduce una dirección de correo electrónico válida"];
+		$this->form[] = ["label"=>"Observaciones","name"=>"observaciones","type"=>"textarea","required"=>TRUE,"validation"=>"required|string|min:5|max:5000"];
 
-			# OLD START FORM
-			//$this->form = [];
-			//$this->form[] = ["label"=>"Nombre","name"=>"nombre","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
-			# OLD END FORM
+			# END FORM DO NOT REMOVE THIS LINE     
 
 			/* 
 	        | ---------------------------------------------------------------------- 

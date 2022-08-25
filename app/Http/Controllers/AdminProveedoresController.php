@@ -5,7 +5,7 @@
 	use DB;
 	use CRUDBooster;
 
-	class AdminFiscaliasController extends \crocodicstudio\crudbooster\controllers\CBController {
+	class AdminProveedoresController extends \crocodicstudio\crudbooster\controllers\CBController {
 
 	    public function cbInit() {
 
@@ -25,23 +25,62 @@
 			$this->button_filter = true;
 			$this->button_import = false;
 			$this->button_export = true;
-			$this->table = "fiscalias";
+			$this->table = "proveedores";
 			# END CONFIGURATION DO NOT REMOVE THIS LINE
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
 			$this->col[] = ["label"=>"Id","name"=>"id"];
 			$this->col[] = ["label"=>"Nombre","name"=>"nombre"];
+			$this->col[] = ["label"=>"Apellido Pat","name"=>"apellido_pat"];
+			$this->col[] = ["label"=>"Apellido Mat","name"=>"apellido_mat"];
+			$this->col[] = ["label"=>"Domicilio","name"=>"domicilio"];
+			$this->col[] = ["label"=>"Col","name"=>"col"];
+			$this->col[] = ["label"=>"Cp","name"=>"cp"];
+			$this->col[] = ["label"=>"Municipio Id","name"=>"municipio_id","join"=>"municipios,nombre"];
+			$this->col[] = ["label"=>"Estado","name"=>"estado"];
+			$this->col[] = ["label"=>"Tel","name"=>"tel"];
+			$this->col[] = ["label"=>"Ext","name"=>"ext"];
+			$this->col[] = ["label"=>"Cel","name"=>"cel"];
+			$this->col[] = ["label"=>"Email","name"=>"email"];
+			$this->col[] = ["label"=>"Comentarios","name"=>"comentarios"];
+			$this->col[] = ["label"=>"Estatus","name"=>"estatus"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
 			$this->form[] = ['label'=>'Nombre','name'=>'nombre','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Apellido Pat','name'=>'apellido_pat','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Apellido Mat','name'=>'apellido_mat','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Domicilio','name'=>'domicilio','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Col','name'=>'col','type'=>'text','validation'=>'min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Cp','name'=>'cp','type'=>'text','validation'=>'min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Municipio Id','name'=>'municipio_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'municipios,nombre'];
+			$this->form[] = ['label'=>'Estado','name'=>'estado','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Tel','name'=>'tel','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Ext','name'=>'ext','type'=>'text','validation'=>'min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Cel','name'=>'cel','type'=>'text','validation'=>'min:1|max:255','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Email','name'=>'email','type'=>'email','validation'=>'required|min:1|max:255|email|unique:proveedores','width'=>'col-sm-10','placeholder'=>'Introduce una dirección de correo electrónico válida'];
+			$this->form[] = ['label'=>'Comentarios','name'=>'comentarios','type'=>'textarea','validation'=>'string|min:5|max:5000','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Estatus','name'=>'estatus','type'=>'select','validation'=>'min:1|max:255','width'=>'col-sm-10','dataenum'=>'Activo;Inactivo'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ["label"=>"Nombre","name"=>"nombre","type"=>"text","required"=>TRUE,"validation"=>"required|min:1|max:255"];
+			//$this->form[] = ['label'=>'Nombre','name'=>'nombre','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Apellido Pat','name'=>'apellido_pat','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Apellido Mat','name'=>'apellido_mat','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Domicilio','name'=>'domicilio','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Col','name'=>'col','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Cp','name'=>'cp','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Municipio Id','name'=>'municipio_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'municipios,nombre'];
+			//$this->form[] = ['label'=>'Estado','name'=>'estado','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Tel','name'=>'tel','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Ext','name'=>'ext','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Cel','name'=>'cel','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Email','name'=>'email','type'=>'email','validation'=>'required|min:1|max:255|email|unique:proveedores','width'=>'col-sm-10','placeholder'=>'Introduce una dirección de correo electrónico válida'];
+			//$this->form[] = ['label'=>'Comentarios','name'=>'comentarios','type'=>'textarea','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Estatus','name'=>'estatus','type'=>'select','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'Activo;Inactivo'];
 			# OLD END FORM
 
 			/* 

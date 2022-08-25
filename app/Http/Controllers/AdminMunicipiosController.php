@@ -31,20 +31,20 @@
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
 			$this->col[] = ["label"=>"Id","name"=>"id"];
-			$this->col[] = ["label"=>"Nombre","name"=>"nombre"];
 			$this->col[] = ["label"=>"Fiscalia Id","name"=>"fiscalia_id","join"=>"fiscalias,nombre"];
+			$this->col[] = ["label"=>"Nombre","name"=>"nombre"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
 			$this->form[] = ['label'=>'Nombre','name'=>'nombre','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Fiscalia Id','name'=>'fiscalia_id','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'fiscalias,nombre'];
+			$this->form[] = ['label'=>'Fiscalia Id','name'=>'fiscalia_id','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
 			//$this->form[] = ['label'=>'Nombre','name'=>'nombre','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Fiscalia Id','name'=>'fiscalia_id','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'fiscalias,nombre'];
+			//$this->form[] = ['label'=>'Fiscalia Id','name'=>'fiscalia_id','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
 			# OLD END FORM
 
 			/* 

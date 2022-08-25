@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TableMunicipios extends Migration
+class AddProveedorIdToBuildingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class TableMunicipios extends Migration
      */
     public function up()
     {
-        Schema::create('municipios', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->string('nombre');
-            $table->integer('fiscalia_id');
+        Schema::table('buildings', function (Blueprint $table) {
+            $table->integer('proveedor_id')->nullable()->after('alias');
         });
+
     }
 
     /**
@@ -28,6 +26,8 @@ class TableMunicipios extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('municipios');
+        Schema::table('buildings', function (Blueprint $table) {
+            $table->dropColumn('proveedor_id');
+        });
     }
 }
