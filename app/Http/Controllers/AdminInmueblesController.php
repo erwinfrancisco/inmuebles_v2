@@ -23,7 +23,7 @@
 			$this->button_detail = true;
 			$this->button_show = true;
 			$this->button_filter = true;
-			$this->button_import = true;
+			$this->button_import = false;
 			$this->button_export = true;
 			$this->table = "buildings";
 			# END CONFIGURATION DO NOT REMOVE THIS LINE
@@ -55,7 +55,7 @@
 			$this->col[] = ["label"=>"Observaciones","name"=>"observaciones"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
-            $row = CRUDBooster::first($this->table,$fiscalia_id);
+			$row = CRUDBooster::first($this->table,$fiscalia_id);
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
@@ -63,12 +63,12 @@
 			$this->form[] = ['label'=>'Tipo Inmueble','name'=>'tipo_inmueble','type'=>'select','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'Arrendado;Comodato;Donación;Propio'];
 			$this->form[] = ['label'=>'Nombre','name'=>'nombre','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Alias','name'=>'alias','type'=>'text','validation'=>'min:0|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Propietario','name'=>'proveedor_id','type'=>'select2','validation'=>'required|min:1|max:255','width'=>'col-sm-9','datatable'=>'proveedores,nombre','help'=>'Es necesario que el propietario o proveedor estén dados de alta en el catalogo "Proveedores"','datatable_format'=>'nombre, \' \',apellido_pat, \' \', apellido_mat'];
+			$this->form[] = ['label'=>'Propietario','name'=>'proveedor_id','type'=>'select2','validation'=>'required|min:1|max:255','width'=>'col-sm-9','datatable'=>'proveedores,nombre','datatable_format'=>'CONCAT(nombre,\' \',apellido_pat,\' \',apellido_mat)'];
 			$this->form[] = ['label'=>'Num Finca','name'=>'num_finca','type'=>'text','validation'=>'min:0|max:255','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Sup Terreno','name'=>'sup_terreno','type'=>'text','validation'=>'min:0|max:255','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Sup Construccion','name'=>'sup_construccion','type'=>'text','validation'=>'min:0|max:255','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Uso','name'=>'uso','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Destino Areas','name'=>'destino_areas','type'=>'text','validation'=>'string|min:5|max:5000','width'=>'col-sm-10'];
+            $this->form[] = ['label'=>'Destino Areas','name'=>'destino_areas','type'=>'textarea','validation'=>'string|min:5|max:5000','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Estatus','name'=>'estatus','type'=>'textarea','validation'=>'string|min:5|max:5000','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Domicilio','name'=>'domicilio','type'=>'text','validation'=>'string|min:5|max:5000','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Col','name'=>'col','type'=>'text','validation'=>'min:0|max:255','width'=>'col-sm-10'];
@@ -90,12 +90,12 @@
 			//$this->form[] = ['label'=>'Tipo Inmueble','name'=>'tipo_inmueble','type'=>'select','validation'=>'required|min:1|max:255','width'=>'col-sm-10','dataenum'=>'Arrendado;Comodato;Donación;Propio'];
 			//$this->form[] = ['label'=>'Nombre','name'=>'nombre','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Alias','name'=>'alias','type'=>'text','validation'=>'min:0|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Propietario','name'=>'proveedor_id','type'=>'select2','validation'=>'required|min:1|max:255','width'=>'col-sm-9','datatable'=>'proveedores,nombre','help'=>'Es necesario que el propietario o proveedor estén dados de alta en el catalogo "Proveedores"','datatable_format'=>'nombre, \' \',apellido_pat, \' \', apellido_mat'];
+			//$this->form[] = ['label'=>'Propietario','name'=>'proveedor_id','type'=>'select2','validation'=>'required|min:1|max:255','width'=>'col-sm-9','datatable'=>'proveedores,nombre','datatable_format'=>'(nombre,\' \',apellido_pat,\' \',apellido_mat)'];
 			//$this->form[] = ['label'=>'Num Finca','name'=>'num_finca','type'=>'text','validation'=>'min:0|max:255','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Sup Terreno','name'=>'sup_terreno','type'=>'text','validation'=>'min:0|max:255','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Sup Construccion','name'=>'sup_construccion','type'=>'text','validation'=>'min:0|max:255','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Uso','name'=>'uso','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Destino Areas','name'=>'destino_areas','type'=>'text','validation'=>'string|min:5|max:5000','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Destino Areas','name'=>'destino_areas','type'=>'textarea','validation'=>'string|min:5|max:5000','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Estatus','name'=>'estatus','type'=>'textarea','validation'=>'string|min:5|max:5000','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Domicilio','name'=>'domicilio','type'=>'text','validation'=>'string|min:5|max:5000','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Col','name'=>'col','type'=>'text','validation'=>'min:0|max:255','width'=>'col-sm-10'];
@@ -208,7 +208,7 @@
 	        | $this->script_js = "function() { ... }";
 	        |
 	        */
-	        $this->script_js = NULL;
+	        $this->script_js = null;
 
 
             /*
@@ -220,7 +220,6 @@
 	        |
 	        */
 	        $this->pre_index_html = null;
-
 
 
 	        /*
