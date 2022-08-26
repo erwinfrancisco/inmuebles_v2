@@ -38,13 +38,13 @@
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
 			$this->form[] = ['label'=>'Nombre','name'=>'nombre','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Fiscalia Id','name'=>'fiscalia_id','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
+			$this->form[] = ['label'=>'Fiscalia Id','name'=>'fiscalia_id','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'fiscalias,nombre'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
 			//$this->form[] = ['label'=>'Nombre','name'=>'nombre','type'=>'text','validation'=>'required|min:1|max:255','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Fiscalia Id','name'=>'fiscalia_id','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
+			//$this->form[] = ['label'=>'Fiscalia Id','name'=>'fiscalia_id','type'=>'select','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'fiscalias,id'];
 			# OLD END FORM
 
 			/* 
